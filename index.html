@@ -5,6 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>畢業條件統計</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDs3ZFGQHRMKx2gEP_wmYOON2g41ztWNGI",
+  authDomain: "graduationtracker.firebaseapp.com",
+  projectId: "graduationtracker",
+  storageBucket: "graduationtracker.firebasestorage.app",
+  messagingSenderId: "647816676415",
+  appId: "1:647816676415:web:9e108b6fce2e78e162e48a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.firebaseDB = db;
+window.firebaseFunctions = { collection, getDocs, addDoc, updateDoc, deleteDoc, doc };
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -52,6 +74,6 @@
   <tbody></tbody>
 </table>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
