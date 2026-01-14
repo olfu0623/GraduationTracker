@@ -12,13 +12,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebas
 import { getFirestore, collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDs3ZFGQHRMKx2gEP_wmYOON2g41ztWNGI",
-  authDomain: "graduationtracker.firebaseapp.com",
-  projectId: "graduationtracker",
-  storageBucket: "graduationtracker.firebasestorage.app",
-  messagingSenderId: "647816676415",
-  appId: "1:647816676415:web:9e108b6fce2e78e162e48a",
-  measurementId: "G-QJ1MBVBEF1"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -33,7 +32,7 @@ window.firebaseFunctions = { collection, onSnapshot, addDoc, updateDoc, deleteDo
 <body>
 <h1>
   畢業條件統計
-  <button onclick="exportPDF()">匯出 PDF</button>
+  <button id="exportPDFBtn">匯出 PDF</button>
 </h1>
 
 <h2>1. 設定畢業需求（彈性條件）</h2>
@@ -45,7 +44,7 @@ window.firebaseFunctions = { collection, onSnapshot, addDoc, updateDoc, deleteDo
   </select>
 </label>
 <label>所需數量：<input type="number" id="gradConditionQty" min="0"></label>
-<button onclick="addGraduationCondition()">新增條件</button>
+<button id="gradConditionBtn">新增條件</button>
 <table id="gradConditionsTable">
   <thead>
     <tr><th>條件名稱</th><th>類型</th><th>所需數量</th><th>操作</th></tr>
@@ -58,7 +57,7 @@ window.firebaseFunctions = { collection, onSnapshot, addDoc, updateDoc, deleteDo
 <label>條件類型：<select id="recordType"><option value="">請先設定畢業條件</option></select></label>
 <label>數量：<input type="number" id="recordQty" min="0"></label>
 <label>學期：<input type="text" id="recordSemester" placeholder="2025-1"></label>
-<button onclick="addRecord()">新增紀錄</button>
+<button id="recordBtn">新增紀錄</button>
 <table id="recordsTable">
   <thead>
     <tr><th>學期</th><th>名稱</th><th>條件類型</th><th>數量</th><th>操作</th></tr>

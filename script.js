@@ -24,32 +24,43 @@ function listenRecords() {
 }
 
 // 新增畢業條件
-async function addGraduationCondition() {
+window.addGraduationCondition = async function() {
   const name = document.getElementById('gradConditionName').value.trim();
   const type = document.getElementById('gradConditionType').value;
   const qty = parseFloat(document.getElementById('gradConditionQty').value);
-  if(!name||isNaN(qty)) return alert("請填寫完整條件");
+  if(!name || isNaN(qty)) return alert("請填寫完整條件");
+
   const { collection, addDoc } = window.firebaseFunctions;
   const db = window.firebaseDB;
-  await addDoc(collection(db, "gradConditions"), {name,type,qty});
+  await addDoc(collection(db,"gradConditions"),{name,type,qty});
+
   document.getElementById('gradConditionName').value='';
   document.getElementById('gradConditionQty').value='';
 }
 
 // 新增修課/活動紀錄
-async function addRecord() {
+window.addRecord = async function() {
   const name = document.getElementById('recordName').value.trim();
   const type = document.getElementById('recordType').value;
   const qty = parseFloat(document.getElementById('recordQty').value);
   const semester = document.getElementById('recordSemester').value.trim();
   if(!name||!type||isNaN(qty)||!semester) return alert('請填寫完整紀錄');
+
   const { collection, addDoc } = window.firebaseFunctions;
   const db = window.firebaseDB;
   await addDoc(collection(db,"records"),{name,type,qty,semester});
+
   document.getElementById('recordName').value='';
   document.getElementById('recordQty').value='';
   document.getElementById('recordSemester').value='';
 }
+
+// 綁定按鈕事件
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('gradConditionBtn').addEventListener('click', window.addGraduationCondition);
+  document.getElementById('recordBtn').addEventListener('click', window.addRecord);
+  // PDF 按鈕可在這裡綁定 exportPDF()
+});
 
 // 初始化監聽
 listenGradConditions();
